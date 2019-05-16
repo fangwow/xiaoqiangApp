@@ -51,6 +51,9 @@ import demo from '@/components/demo/index'//demo
 import addmyFapiao from '@/components/mine/pages/addmyFapiao.vue' //新增发票
 import myFapiao from '@/components/mine/pages/myFapiao.vue' //我的发票
 import fapiaoInfo from '@/components/mine/pages/fapiaoInfo.vue'  //发票详情
+// 加载中组件
+// import Loading from '@/components/demo/loading.vue'
+import parent from '@/components/demo/parent.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -198,5 +201,9 @@ export default new Router({
             path: '/fapiaoInfo',
             name: 'fapiaoInfoe',
             component: fapiaoInfo
+        },{
+            path: '/parent',
+            name: 'parent',
+            component: parent
         }]
 })
