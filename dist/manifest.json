@@ -1,0 +1,236 @@
+{
+    "id" : "huolaolea.com",
+    "name" : "小强智配",
+    "version" : {
+        "name" : "1",
+        "code" : 1
+    },
+    "description" : "小强智配",
+    "icons" : {
+        "72" : "icon.png"
+    },
+    "launch_path" : "index.html",
+    "developer" : {
+        "name" : "",
+        "email" : "",
+        "url" : ""
+    },
+    "permissions" : {
+        "Accelerometer" : {
+            "description" : "plus.accelerometer.*"
+        },
+        "Audio" : {
+            "description" : "plus.audio.*"
+        },
+        "Cache" : {
+            "description" : "plus.cache.*"
+        },
+        "Camera" : {
+            "description" : "plus.camera.*"
+        },
+        "Console" : {
+            "description" : "plus.console.*"
+        },
+        "Device" : {
+            "description" : "plus.device.*"
+        },
+        "Downloader" : {
+            "description" : "plus.downloader.*"
+        },
+        "Events" : {
+            "description" : "Events"
+        },
+        "File" : {
+            "description" : "plus.io.*"
+        },
+        "Gallery" : {
+            "description" : "plus.gallery.*"
+        },
+        "Geolocation" : {
+            "description" : "plus.geolocation.*"
+        },
+        "Invocation" : {
+            "description" : "plus.android.*"
+        },
+        "Orientation" : {
+            "description" : "plus.orientation.*"
+        },
+        "Proximity" : {
+            "description" : "plus.proximity.*"
+        },
+        "Storage" : {
+            "description" : "plus.storage.*"
+        },
+        "Uploader" : {
+            "description" : "plus.uploader.*"
+        },
+        "Runtime" : {
+            "description" : "plus.runtime.*"
+        },
+        "XMLHttpRequest" : {
+            "description" : "plus.net.*"
+        },
+        "Zip" : {
+            "description" : "plus.zip.*"
+        },
+        "Barcode" : {
+            "description" : "plus.barcode.*"
+        },
+        "Webview" : {
+            "description" : "plus.webview.*"
+        },
+        "NativeUI" : {
+            "description" : "plus.nativeUI.*"
+        },
+        "Navigator" : {
+            "description" : "plus.navigator.*"
+        },
+        "NativeObj" : {
+            "description" : "plus.nativeObj.*"
+        },
+        "Stream" : {
+            "description" : "plus.stream.*"
+        },
+        "Confusion" : {
+            "description" : "Resource confusion"
+        },
+        "Maps" : {},
+        "Payment" : {}
+    },
+    "plus" : {
+        "launchwebview" : {
+            "statusbar" : {
+                "background" : "#ffffff"
+            }
+        },
+        "splashscreen" : {
+            "autoclose" : true,
+            "waiting" : true,
+            "delay" : 2000
+        },
+        "popGesture" : "close",
+        "runmode" : "normal",
+        "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
+        "adid" : "124357130210",
+        "distribute" : {
+            "plugins" : {
+                "payment" : {
+                    "weixin" : {
+                        "appid" : "wx4c3f68980712213c"
+                    },
+                    "alipay" : {
+                        "scheme" : "huolaolea.com"
+                    }
+                },
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "8b070cbdd498d74bbf89b5902a26c564",
+                        "appkey_android" : "a23af3f65ad02bff25482147fa0dc3c1"
+                    }
+                },
+                "oauth" : {},
+                "push" : {},
+                "share" : {},
+                "speech" : {},
+                "statics" : {}
+            },
+            "google" : {
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_TASKS\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_TOP_ACTIVITY_INFO\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            "splashscreen" : {
+                "android" : {
+                    "hdpi" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/xin4.7.png",
+                    "xhdpi" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/xin4.7.png",
+                    "xxhdpi" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/xin4.7.png"
+                },
+                "ios" : {
+                    "iphone" : {
+                        "retina35" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/3.5寸.png",
+                        "retina40" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/4.0寸.png",
+                        "retina47" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/4.7寸.png",
+                        "retina55" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png",
+                        "iphonex" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/iphone x.png",
+                        "portrait-896h@2x" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/6.1寸.png",
+                        "portrait-896h@3x" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/6.5寸.png"
+                    },
+                    "ipad" : {
+                        "portrait7" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png",
+                        "portrait-retina7" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png",
+                        "landscape7" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png",
+                        "landscape-retina7" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png",
+                        "portrait-1112h@2x" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png",
+                        "portrait-1194h@2" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png",
+                        "portrait-1366h@2x" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/5.5寸.png"
+                    }
+                }
+            },
+            "icons" : {
+                "ios" : {
+                    "appstore" : "/Users/litianzhen/Desktop/货来了前端/各个尺寸启动页-货来了/WechatIMG27.png",
+                    "ipad" : {
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    }
+                },
+                "android" : {
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "ldpi" : "unpackage/res/icons/48x48.png",
+                    "mdpi" : "unpackage/res/icons/48x48.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                }
+            },
+            "apple" : {
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "此APP会在上传头像时读取您的相册",
+                    "NSPhotoLibraryAddUsageDescription" : "此APP会在您需要下载图片时写入图片",
+                    "NSCameraUsageDescription" : "此APP会在上传头像时使用您的摄像头",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "此APP需要使用您的位置以准确的为您推荐附近物流信息",
+                    "NSLocationAlwaysUsageDescription" : "此APP需要使用您的位置以准确的为您推荐附近物流信息",
+                    "NSLocationWhenInUseUsageDescription" : "此APP需要使用您的位置以准确的为您推荐附近物流信息"
+                }
+            }
+        }
+    },
+    "fullscreen" : false
+}

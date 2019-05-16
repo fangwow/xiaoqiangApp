@@ -1,0 +1,424 @@
+<!DOCTYPE html><html><head><link href=./static/css/mui.min.css rel=stylesheet type=text/css><link href=./static/css/mui-picker.css rel=stylesheet type=text/css><script type=text/javascript src=static/js/mui.min.js></script><script type=text/javascript src=static/js/mui.picker.min.js></script><meta charset=utf-8><title>小强</title><meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta http-equiv=Cache-Control content=no-cache><meta http-equiv=Pragma content=no-cache><script>var log = console.log.bind(console)</script><style>#qrcode img {
+      width: 1.26rem!important;
+      height: 1.26rem!important;
+    }
+    .picker-toolbar {
+      height: 0.8rem!important;
+      background: #f7f7f7!important;
+    }
+    .mint-datetime-action {
+      background: #f7f7f7!important;
+      color: #75c1dd!important;
+      font-size: 0.3rem!important;
+      height: 100%!important;
+    }</style><link href=./static/css/app.bd2fdce3e7c8d882988e689c4e21e816.css rel=stylesheet></head><body onmousemove="return false" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" onbeforecopy="return false"><div id=app></div><script src=static/js/jquery.min.js></script><script src=static/js/qrcode.min.js></script><script src=static/js/html2canvas.min.js></script><script src=static/js/date.js></script><script src=static/js/jianqie.js></script><script src=static/js/webSocket.js></script><script type=text/javascript>var log = console.log.bind(console)
+    window.imgUrl = './static/images/'
+    window.Api = 'http://106.13.100.42:8081'
+    // window.Api = 'http://192.168.31.171:8081'
+    window.default = './static/images/default.png'
+
+    var base64ToBlob = function(code) {
+        var parts = code.split(';base64,')
+        var contentType = parts[0].split(':')[1]
+        var raw = window.atob(parts[1])
+        var rawLength = raw.length
+
+        var uInt8Array = new Uint8Array(rawLength)
+
+        for (var i = 0; i < rawLength; ++i) {
+            uInt8Array[i] = raw.charCodeAt(i)
+        }
+        return new Blob([uInt8Array], {type: contentType})
+    }
+
+    function unique1(arr){
+        var hash=[];
+        for (var i = 0; i < arr.length; i++) {
+            if(hash.indexOf(arr[i])==-1){
+                hash.push(arr[i]);
+            }
+        }
+        return hash;
+    }
+
+    function GetRequest() {
+        var url = location.search;
+        //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            var strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+
+    function onScrollToBottom(){
+        // 处理滚动到窗口底部事件
+    }
+
+    function playSound1(src){
+        var yinyue = new Audio(src)
+        yinyue.play();
+    }
+
+    var websocket = null;
+    // JSON.stringify()
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://www.huolailea.com:8081/websocket");
+        // websocket = new WebSocket("ws://192.168.1.137:8081/websocket");
+    } else {
+        log('不支持 WebSocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function(){
+        setMessageInnerHTML("error");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function(event){
+        setMessageInnerHTML("open");
+        localStorage.klgr = 'kl'
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function(event){
+        var innerHTML = JSON.parse(event.data)
+        console.log(innerHTML.code)
+        if (innerHTML.code == '0') {
+            var klgr = localStorage.klgr
+
+        }
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function(){
+        setMessageInnerHTML("close");
+        newWebsocket()
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function(){
+        websocket.close();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+
+    }
+
+    //关闭连接
+    function closeWebSocket(){
+        websocket.close();
+    }
+
+    //发送消息
+    function send(id) {
+        websocket.send(id);
+    }
+
+    window.send = send
+    // send()
+
+    // closeWebSocket()
+
+    var connection = function() {
+        var url = 'ws://www.huolailea.com:8081/websocket';
+        // websocket = new WebSocket(url);
+    }
+    var count = 0
+    var MAX = 1000
+    var newWebsocket = function() {
+        count = count + 1
+        log("reconnection...【" + count + "】")
+        //1与服务器已经建立连接
+        if (count >= MAX || websocket.readyState == 1) {
+            clearTimeout(t)
+        } else {
+            //2已经关闭了与服务器的连接
+            if (websocket.readyState == 3) {
+                connection()
+            }
+            //0正尝试与服务器建立连接,2正在关闭与服务器的连接
+            t = setTimeout(function() {
+                newWebsocket()
+            }, 5000);
+        }
+
+    }
+
+    var ajax = function(method, path, data, responseCallback) {
+        var r = new XMLHttpRequest()
+        r.open(method, path, true)
+        r.setRequestHeader('Content-Type', 'application/json')
+        r.onreadystatechange = function() {
+            if(r.readyState === 4) {
+                responseCallback(r)
+            }
+        }
+        data = JSON.stringify(data)
+        r.send(data)
+    }
+
+    var pay = function(channel, statement, callback) {
+        plus.payment.getChannels(function(e) {
+            for (var i = 0; i < e.length; i++) {
+                if (channel == e[i].id) {
+                    plus.payment.request(e[i], statement, function(r) {
+                        callback(r)
+                    }, function(r) {
+                        log(JSON.stringify(r))
+                    });
+                }
+            }
+
+        }, function() {
+
+        });
+    }
+
+    var setdingwei = function() {
+        setTimeout(function() {
+            window.getGeocode(function(position) {
+                var d = position.coords
+                localStorage.latitude = d.latitude
+                localStorage.longitude = d.longitude
+            })
+            setdingwei()
+        }, 10000)
+    }
+
+    var downWgt = function(url) {
+        setTimeout(function() {
+            plus.nativeUI.closeWaiting()
+        }, 5000)
+        plus.downloader.createDownload(url, {filename:"_doc/update/"},
+            function(d,status){
+                if (status == 200) {
+                    console.log("更新成功：" + d.filename);
+                    installWgt(d.filename); // 安装wgt包
+                } else {
+                    console.log("更新失败！");
+                    plus.nativeUI.alert("更新失败！");
+                }
+            }).start();
+    }
+
+    // 更新应用资源
+    var installWgt = function(path) {
+        plus.nativeUI.showWaiting("安装更新...");
+        plus.runtime.install(path,{},function(){
+            plus.nativeUI.closeWaiting();
+            console.log("安装成功！");
+            plus.nativeUI.alert("应用资源更新完成！",function(){
+                plus.runtime.restart();
+            });
+        },function(e){
+            plus.nativeUI.closeWaiting();
+            console.log("安装更新失败["+e.code+"]："+e.message);
+            plus.nativeUI.alert("安装更新失败["+e.code+"]："+e.message);
+        });
+    }
+
+    var updateApp = function() {
+        plus.runtime.getProperty(plus.runtime.appid,function(inf){2
+            var v = 'v' + inf.version
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+                var type = 'A'
+                var url = Api + 'user/api/getVersion?type=' + type
+                ajax('get', url, '', function(r) {
+                    var r = JSON.parse(r.response)
+                    if (v != r.data.versionNum) {
+                        plus.nativeUI.showWaiting("发现新版本" + r.data.versionNum + '当前版本' + v + ',正在更新，请稍后');
+                        downWgt(r.data.versionPath)
+                    }
+                })
+            } else {
+                var type = 'I'
+            }
+        })
+    }
+
+
+
+    // 上传文件
+    function upload(file, callback, data) {
+        var server = data.url
+        var wt = plus.nativeUI.showWaiting();
+        var task = plus.uploader.createUpload(
+            server, {method:'POST'},
+            function(t, status){ //上传完成
+                if(status === 200){
+                    var message = JSON.parse(t.responseText).message
+                    var resultCode = JSON.parse(t.responseText).resultCode
+                    plus.nativeUI.closeWaiting();
+                    plus.nativeUI.toast(message, {align: 'center'})
+                    if (resultCode === 0) {
+                        callback(t.responseText, file)
+                    }
+                } else{
+                    alert('失败')
+                    wt.close();
+                }
+            }
+        );
+        for (var i in data) {
+            task.addData([i], data[i]);
+        }
+        task.addFile(file, {key: 'file'});
+        task.start();
+    }
+    // 拍照添加文件
+    function appendByCamera(callback){
+        plus.camera.getCamera().captureImage(function(p){
+            plus.gallery.save(p, function(e) {
+                if (e.path) {
+                    appendByGallery(callback, 1)
+                } else {
+                    var url = {files: [e.file]}
+                    appendFile(url, callback);
+
+                }
+            }, function() {
+                log('222')
+            });
+        });
+    }
+    // 从相册添加文件
+    function appendByGallery(callback, num){
+        plus.gallery.pick(function(p) {
+            appendFile(p, callback);
+        }, function(e){
+        },{filter:'image',multiple:true,maximum: num,system:false,onmaxed:function(){
+            }})
+    }
+
+    function appendFile(p, callback){
+        for(var i=0;i<p.files.length;i++){
+            var file = p.files[i]
+            compressImage(file, callback)
+        }
+    }
+    // 产生一个随机数
+    function getUid(){
+        return Math.floor(Math.random()*100000000+10000000).toString();
+    }
+
+    function compressImage(src, callback, num, url){
+        var uid = getUid()
+        if (num) {
+            var num1 = num
+        } else {
+            var num1 = 10
+        }
+        plus.nativeUI.showWaiting();
+        plus.zip.compressImage({
+                src: src,
+                dst: "_doc/" + uid + "cm.jpg",
+                quality: num1,
+                overwrite:true,
+                width:'100%',
+                height: '100%'
+            },
+            function(i){
+                plus.nativeUI.closeWaiting();
+                upload(i.target, callback, url)
+            },function(e){
+                plus.nativeUI.closeWaiting();
+            });
+    }
+
+    // 轻压缩
+    // 相册
+    function appendByGallery1(callback, data){
+        plus.gallery.pick(function(p) {
+            compressImage(p.files[0], callback, 50, data)
+        }, function(e){
+        },{filter:'image',multiple:true,
+            maximum: 1,system:false,onmaxed:function(){
+            }})
+    }
+
+    // 拍照
+    function appendByCamera1(callback, data){
+        plus.camera.getCamera().captureImage(function(p){
+            plus.gallery.save(p, function(e) {
+                if (e.path) {
+                    appendByGallery1(callback, data)
+                } else {
+                    compressImage(e.file, callback, 50, data)
+                }
+            }, function() {
+                log('222')
+            });
+        });
+    }
+
+
+
+
+
+
+    var downLoader = function(imgUrl) {
+        plus.nativeUI.showWaiting("下载中，请稍等...")
+        // 创建下载任务
+        var dtask = plus.downloader.createDownload(imgUrl, {},
+            function (d, status) {
+                // 下载完成
+                if (status == 200) {
+                    plus.nativeUI.closeWaiting()
+                    plus.gallery.save(d.filename, function(e) {
+                        plus.nativeUI.alert("已保存至相册")
+                    }, function() {
+
+                    });
+                } else {
+                    alert( "下载出错：" + status );
+
+                }
+
+            });
+        dtask.start();
+    }
+
+    var getGaode = function(ax, ay, bx, by, name) {
+        var src = new plus.maps.Point(ax, ay);
+        var dst = new plus.maps.Point(bx, by);
+        // 调用系统地图显示
+
+        plus.maps.openSysMap( dst, name, src );
+    }
+
+    var __mian = function() {
+        // updateApp()
+        setdingwei()
+        plus.navigator.setStatusBarStyle("dark");
+        plus.navigator.setStatusBarBackground('#ffffff');
+    }
+
+    // 扩展API加载完毕，现在可以正常调用扩展API
+    function onPlusReady(){
+        var obj = GetRequest()
+        if (obj.juese) {
+            localStorage.juese = obj.juese
+        }
+
+        // 通过定位模块获取位置信息
+        window.getGeocode = function(callback) {
+            plus.geolocation.getCurrentPosition(callback, function (e) {
+                // outSet( "获取定位位置信息失败："+e.message );
+            },{geocode:true});
+        }
+        window.setdingwei = setdingwei
+        window.pay = pay
+        __mian()
+    }
+
+    document.addEventListener('plusready', onPlusReady, false)</script><script type=text/javascript src=./static/js/manifest.3ad1d5771e9b13dbdad2.js></script><script type=text/javascript src=./static/js/vendor.3029181d2ff7bc195844.js></script><script type=text/javascript src=./static/js/app.7be0f260429ff1f48120.js></script></body></html>
