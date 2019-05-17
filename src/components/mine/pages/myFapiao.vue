@@ -6,8 +6,12 @@
                 <i @touchstart="fanhui()" class="l-top-dingwei-i"></i>
                 <span class="l-top-biaoti">我的发票</span>
             </div>
-            <div class="l-mypage-lists">
-                <div v-for="(item, index) in list" class="l-mypage-list" :key='index'>
+            <ul
+                v-infinite-scroll="loadMore"
+                infinite-scroll-disabled="loading"
+                infinite-scroll-distance="10"
+                class="l-mypage-lists">
+                <li v-for="(item, index) in list" class="l-mypage-list" :key='index'>
                     <a class="l-list-a" href='javascript:;'>
                         <div class="l-mypage-info-sss">
                             <div v-if='item.checked == true' class="xuanzhe active" @click='(e) => singleClick(index)'></div>
@@ -26,10 +30,10 @@
                             </div>
                         </div>
                     </a>
-                </div>
-            </div>
+                </li>
+            </ul>
             <div class="l-hetong-zhanwei"></div>
-            <div class="l-hetong-bottom">
+            <!-- <div class="l-hetong-bottom">
                 <div class="zo">
                     <div class="zo1">
                         <div v-if='isAll == true' class="xuanzhe active" @click='all()'></div>
@@ -44,7 +48,7 @@
                 <div class="yb" @click='next()'>
                     下一步
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -101,6 +105,17 @@
             this.Fapiao();
         },
         methods: {
+            // 上拉加载
+            loadMore() {
+                this.loading = true;
+                setTimeout(() => {
+                    let last = this.list[this.list.length - 1];
+                    for (let i = 1; i <= 10; i++) {
+                    this.list.push(last + i);
+                    }
+                    this.loading = false;
+                }, 2500);
+            },
             // 点击列表页跳转
             detail(id,sumPrice){
                 console.log(id);
@@ -128,7 +143,6 @@
                 if(this.list.length === count){
                     th.isAll = true;
                 }
-
             },
             // 全选
             all(){
@@ -158,7 +172,6 @@
             jump1(id) {
                 this.$router.push('/order/' + id)
             },
-
             fanhui() {
                 history.go(-1)
             },
@@ -226,7 +239,6 @@
             align-items: center;
         }
     }
-
     .l-mypage-list {
         position: relative;
         background: #fff;
@@ -295,7 +307,6 @@
                         display: flex;
                         padding-left: 10px;
                         box-sizing: border-box;
-
                         span {
                             font-size: 14px;
                             color: #666;
@@ -320,7 +331,6 @@
             }
         }
     }
-
     .l-index-top {
         position: fixed;
         top: 0;
@@ -364,21 +374,18 @@
         justify-content: space-between;
         align-items: center;
     }
-
     .l-mypage-info-sss {
         display: flex;
         align-items: center;
         color: #333;
         font-size: 15px;
     }
-
     .l-mypage-img {
         width: 22px;
         height: 22px;
         display: inline-block;
         margin-right: 5px;
     }
-
     .l-xdybjmtb-lan {
         width: 10px;
         height: 15px;
@@ -387,7 +394,6 @@
         display: inline-block;
         margin-right: 15px;
     }
-
     .l-xcxitbvi-gr {
         width: 10px;
         height: 15px;
@@ -396,7 +402,6 @@
         display: inline-block;
         margin-right: 15px;
     }
-
     .l-xcxitbvi-kl {
         width: 10px;
         height: 15px;
@@ -405,7 +410,6 @@
         display: inline-block;
         margin-right: 15px;
     }
-
     .l-beijingdaoheze {
         width: 0.39rem;
         height: 0.11rem;
@@ -414,19 +418,16 @@
         background-size: 100% 100%;
         display: inline-block;
     }
-
     .l-xiaozi-14 {
         font-size: 14px;
         color: #666;
     }
-
     .l-mypage-lists {
         width: 100%;
         display: flex;
         flex-direction: column;
         background: #f2f2f2;
     }
-
     .l-xiangyou-jiantou-i {
         width: 10px;
         height: 15px;
@@ -436,12 +437,10 @@
         position: absolute;
         right: 15px;
     }
-
     .l-userInfo {
         display: flex;
         align-items: center;
     }
-
     .l-biaoqian {
         font-size: 10px;
         color: #51c1ea;
@@ -453,7 +452,6 @@
         align-items: center;
         margin-left: 10px;
     }
-
     .l-biaoqian i {
         width: 10px;
         height: 10px;
@@ -462,18 +460,15 @@
         display: inline-block;
         margin: 0 5px;
     }
-
     .l-nickname {
         color: #fff;
         font-size: 16px;
     }
-
     .l-userPhone {
         color: #fff;
         font-size: 12px;
         margin-top: 5px;
     }
-
     .l-tbxiangzu-infos {
         width: 100%;
         display: flex;
@@ -482,7 +477,6 @@
         padding-left: 15px;
         box-sizing: border-box;
     }
-
     .l-tbxiangzu-s {
         display: flex;
         justify-content: space-between;
@@ -492,7 +486,6 @@
         width: 100%;
         height: 100%;
     }
-
     .l-tbxiang-sss {
         width: 1.7rem;
         height: 1.7rem;
@@ -502,13 +495,11 @@
         position: absolute;
         left: 15px;
     }
-
     .l-tbxiang-sss img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
     }
-
     .l-tbxiangzu {
         width: 100%;
         height: 1.7rem;
@@ -519,7 +510,6 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-
     .l-mypage-top {
         width: 100%;
         display: flex;
@@ -530,7 +520,6 @@
         font-size: 18px;
         margin-top: 10px;
     }
-
     .l-touxiang-s {
         width: 100%;
         height: 3.1rem;
@@ -542,7 +531,6 @@
         box-sizing: border-box;
         position: relative;
     }
-
     .l-xiaohongdian {
         min-width: 15px;
         max-width: 25px;
@@ -559,20 +547,16 @@
         right: 18px;
         padding: 0 4px;
     }
-
     .l-index-dingdan {
         position: relative;
     }
-
     .l-index-dingdan .l-xiaohongdian {
         top: -7px;
     }
-
     .isActive {
         font-size: 10px;
         color: #51c1ea!important;
     }
-
     .l-jiehuo {
         color: #000;
         font-size: 12px;
@@ -581,7 +565,6 @@
         background: #fff;
         z-index: 105;
     }
-
     .l-zhongjian-div {
         position: absolute;
         width: 40px;
@@ -591,7 +574,6 @@
         top: 0;
         z-index: 105;
     }
-
     .l-zhongjian {
         width: 40px;
         height: 40px;
@@ -603,7 +585,6 @@
         justify-content: center;
         z-index: 105;
     }
-
     .l-zhongjian-zhongjian-vevk {
         width: 45px;
         height: 30px;
@@ -611,7 +592,6 @@
         position: absolute;
         z-index: 101;
     }
-
     .zhongjian-i {
         background: url("../../../../static/images/hy_mine.png") no-repeat center;
         background-size: 100% 100%;
@@ -619,7 +599,6 @@
         width: 20px;
         height: 20px;
     }
-
     .l-zhongjian-zhongjian {
         width: 30px;
         height: 30px;
@@ -637,4 +616,3 @@
         background-size: 100% 100%;
     }
 </style>
-

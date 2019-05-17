@@ -17,6 +17,8 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import { Toast } from 'mint-ui';
 import { Indicator } from 'mint-ui';
+import { InfiniteScroll } from 'mint-ui';
+Vue.use(InfiniteScroll);
 
 var log = console.log.bind(console)
 

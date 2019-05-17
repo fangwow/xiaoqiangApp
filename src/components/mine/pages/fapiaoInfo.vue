@@ -297,7 +297,7 @@ export default {
             .title {
                 width: 100%;
                 height: 0.88rem;
-                font-size: 0.36rem;
+                font-size: 0.3rem;
                 color: #333;
                 display: flex;
                 align-items: center;
@@ -320,13 +320,13 @@ export default {
                     span {
                         width: 2.06rem;
                         display: block;
-                        font-size: 0.36rem;
+                        font-size: 0.26rem;
                         color: #333;
                     }
                     i {
                         display: block;
                         flex: 1;
-                        font-size: 0.36rem;
+                        font-size: 0.26rem;
                         color: #666;
                     }
                 }
