@@ -53,9 +53,8 @@ import myFapiao from '@/components/mine/pages/myFapiao.vue' //我的发票
 import fapiaoInfo from '@/components/mine/pages/fapiaoInfo.vue'  //发票详情
 // 整车支付
 import zhengchezhifu from '@/components/index/zhengchezhifu.vue'
-// 加载中组件
-// import Loading from '@/components/demo/loading.vue'
-// import parent from '@/components/demo/parent.vue'
+// 图片放大
+import imgPreview from '@/components/demo/img-preview.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -211,5 +210,9 @@ export default new Router({
             path: '/zhengchezhifu',
             name: 'zhengchezhifu',
             component: zhengchezhifu
+        },{
+            name: 'img-preview',
+            path: '/img-preview',
+            component: imgPreview
         }]
 })

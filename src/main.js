@@ -19,6 +19,11 @@ import { Toast } from 'mint-ui';
 import { Indicator } from 'mint-ui';
 import { InfiniteScroll } from 'mint-ui';
 Vue.use(InfiniteScroll);
+// 图片预览插件
+import vuePicturePreview from 'vue-picture-preview'
+Vue.use(vuePicturePreview)
+
+
 
 var log = console.log.bind(console)
 
