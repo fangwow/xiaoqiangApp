@@ -55,6 +55,10 @@ import fapiaoInfo from '@/components/mine/pages/fapiaoInfo.vue'  //发票详情
 import zhengchezhifu from '@/components/index/zhengchezhifu.vue'
 // 图片放大
 import imgPreview from '@/components/demo/img-preview.vue'
+// 司机接单信息
+import sijijiedanInfo from '@/components/mine/pages/sijijiedanInfo.vue'
+// 在途
+import zaitu from '@/components/demo/zaitu.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -214,5 +218,13 @@ export default new Router({
             name: 'img-preview',
             path: '/img-preview',
             component: imgPreview
+        },{
+            name: 'sijijiedanInfo',
+            path: '/sijijiedanInfo',
+            component: sijijiedanInfo
+        },{
+            name: 'zaitu',
+            path: '/zaitu',
+            component: zaitu
         }]
 })

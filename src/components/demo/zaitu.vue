@@ -279,7 +279,7 @@
                 .landian {
                     width: 0.22rem;
                     height: 0.22rem;
-                    background: url("../../../static/images/landian.png") no-repeat center;
+                    // background: url("../../../static/images/landian.png") no-repeat center;
                     background-size: 100% 100%;
                     position: absolute;
                     left: 0;
@@ -507,7 +507,7 @@
     .dvhk {
         width: 0.34rem;
         height: 0.28rem;
-        background: url("../../../static/images/duihao.png") no-repeat center;
+        // background: url("../../../static/images/duihao.png") no-repeat center;
         background-size: 100% 100%;
         position: absolute;right: 0.3rem;
     }
